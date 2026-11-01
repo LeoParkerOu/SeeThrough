@@ -1,0 +1,69 @@
+{
+  "name": "@leoparkerou/dsh-seethrough",
+  "version": "0.4.0-beta.1",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js"
+  },
+  "scripts": {
+    "build": "node build-client.mjs",
+    "test": "node --test *.test.mjs",
+    "release": "npm run build && python3 scripts/build-release.py && node scripts/verify-release.mjs dist/package dist/seethrough-0.4.0-beta.1.tgz"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-sidebar-right",
+        "@deepseek-ai/dsh-client-ui-conversation",
+        "@deepseek-ai/dsh-api-session-controller"
+      ]
+    }
+  },
+  "description": "SeeThrough — explore your software as a 3D factory and ask your DSH agent about its components.",
+  "license": "MIT",
+  "engines": {
+    "dsh": "0.2.1-rc.3"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-subagent": "0.2.1-rc.3",
+    "@deepseek-ai/dsh-llm": "0.2.1-rc.3"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh-subagent": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-llm": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "three": "0.186.1",
+    "esbuild": "0.25.12"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeoParkerOu/SeeThrough.git"
+  },
+  "homepage": "https://github.com/LeoParkerOu/SeeThrough",
+  "bugs": {
+    "url": "https://github.com/LeoParkerOu/SeeThrough/issues"
+  },
+  "files": [
+    "*.js",
+    "*.mjs",
+    "*.jsx",
+    "cordis.patch.yml",
+    "AGENT_GUIDE.md",
+    "THIRD_PARTY_LICENSES.txt",
+    "README.md",
+    "LICENSE",
+    "docs/"
+  ]
+}
